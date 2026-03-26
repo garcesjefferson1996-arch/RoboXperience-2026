@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RoboXperience 2026 – Torneo de robótica · Colegio San Pío X</title>
-    <!-- SEO básico -->
-    <meta name="description" content="RoboXperience 2026: torneo colegial de robótica en Ambato, Ecuador. Categorías: seguidor de línea, soccer, robot bailarín, mini sumo. Inscripciones abiertas.">
-    <meta name="keywords" content="robótica, torneo, colegio San Pío X, Ambato, Ecuador, STEM, seguidor de línea, robot soccer, mini sumo, cultura ecuatoriana">
-    <!-- Fuentes elegantes (Inter + Outfit) -->
+    <title>RoboXperience 2026 – Torneo de robótica · Unidad Educativa San Pío X</title>
+    <!-- SEO mejorado -->
+    <meta name="description" content="RoboXperience 2026: primera edición del torneo colegial de robótica organizado por la Unidad Educativa San Pío X en Ambato, Ecuador. Categorías: seguidor de línea, soccer, robot bailarín, mini sumo. Inscripciones abiertas.">
+    <meta name="keywords" content="robótica, torneo, Unidad Educativa San Pío X, Ambato, Ecuador, STEM, seguidor de línea, robot soccer, mini sumo, cultura ecuatoriana, colegio católico">
+    <!-- Fuentes elegantes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome para iconos (circuitos, tecnología) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -21,10 +21,11 @@
         }
 
         :root {
-            --azul-piox: #0B2B4F;           /* Azul oscuro institucional del colegio */
-            --verde-teal: #1D7A7A;           /* VERDE AZULADO institucional */
-            --azul-claro: #E2F0FA;            /* Fondo suave */
-            --gris-neutro: #F9FCFE;
+            --azul-piox: #0B2B4F;
+            --verde-teal: #1D7A7A;
+            --dorado: #D4AF37;
+            --dorado-suave: #F3E5AB;
+            --azul-claro: #E2F0FA;
             --blanco-puro: #FFFFFF;
             --gris-oscuro: #1E2A3A;
             --sutil-borde: rgba(11, 43, 79, 0.1);
@@ -52,23 +53,22 @@
             padding: 0 2rem;
         }
 
-        /* fondo de circuito sutil (en secciones) */
-        .circuit-bg {
-            position: relative;
-            overflow: hidden;
-        }
-        .circuit-bg::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(11,43,79,0.02) 0px, transparent 20%),
-                repeating-linear-gradient(45deg, transparent 0px, transparent 20px, rgba(11,43,79,0.02) 21px, rgba(11,43,79,0.02) 22px);
-            pointer-events: none;
-            z-index: 0;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* botones */
+        .animate-fade-up {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Botones */
         .btn-primario {
             background-color: var(--azul-piox);
             color: white;
@@ -89,7 +89,7 @@
             color: var(--azul-piox);
             border-color: var(--azul-piox);
             box-shadow: 0 8px 20px rgba(11,43,79,0.15);
-            transform: scale(1.02);
+            transform: translateY(-2px);
         }
 
         .btn-secundario {
@@ -112,7 +112,6 @@
             transform: translateY(-2px);
         }
 
-        /* botón drive con nuevo color */
         .btn-drive {
             background: var(--verde-teal);
             color: white;
@@ -134,9 +133,9 @@
             background: white;
             color: var(--verde-teal);
             box-shadow: 0 8px 18px rgba(29,122,122,0.4);
+            transform: translateY(-2px);
         }
 
-        /* botón formulario Google */
         .btn-google-form {
             background: linear-gradient(135deg, #0B2B4F 0%, #1D7A7A 100%);
             color: white;
@@ -161,7 +160,7 @@
             box-shadow: 0 20px 30px rgba(11,43,79,0.4);
         }
 
-        /* ===== HERO CON LOGOS GIGANTES SEMI-FUERA ===== */
+        /* Hero */
         .hero {
             min-height: 90vh;
             display: flex;
@@ -189,7 +188,6 @@
             transition: all 0.5s ease;
             opacity: 0.3;
             z-index: 1;
-            pointer-events: auto;
         }
         
         .logo-piox {
@@ -208,16 +206,6 @@
             opacity: 0.2;
         }
         
-        .logo-esquina:hover {
-            opacity: 0.5;
-            transform: translateY(-50%) rotate(-5deg) scale(1.02);
-        }
-        
-        .logo-robox:hover {
-            opacity: 0.4;
-            transform: rotate(8deg) scale(1.02);
-        }
-
         @media (max-width: 768px) {
             .logo-piox {
                 left: -40px;
@@ -231,42 +219,37 @@
             }
         }
 
-        .hero .circuit-lines {
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(90deg, transparent 95%, var(--azul-piox) 100%),
-                repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(11,43,79,0.1) 41px, rgba(11,43,79,0.1) 42px);
-            opacity: 0.25;
-            z-index: 1;
-        }
         .hero-content {
             position: relative;
             z-index: 10;
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto;
             text-align: center;
             padding: 4rem 0;
         }
+        
         .hero h1 {
             font-size: clamp(3rem, 10vw, 5.5rem);
             line-height: 1.1;
             color: var(--azul-piox);
             margin-bottom: 1.5rem;
         }
+        
         .hero h1 span {
             color: var(--verde-teal);
         }
+        
         .hero-sub {
             font-size: 1.4rem;
             font-weight: 400;
             color: #2c3e4f;
             max-width: 600px;
             margin: 0 auto 2rem;
-            border-left: 4px solid var(--verde-teal);
+            border-left: 4px solid var(--dorado);
             padding-left: 1.8rem;
             text-align: left;
         }
+        
         .hero-details {
             display: flex;
             flex-wrap: wrap;
@@ -280,68 +263,153 @@
             border: 1px solid var(--sutil-borde);
             justify-content: center;
         }
+        
         .hero-details i {
             color: var(--verde-teal);
             margin-right: 0.5rem;
-            font-size: 1.2rem;
-        }
-        .hero-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.2rem;
-            align-items: center;
-            justify-content: center;
         }
 
-        .tech-bg-icons {
+        /* ===== SECCIÓN DE BIENVENIDA INSTITUCIONAL ===== */
+        .bienvenida-institucional {
+            background: linear-gradient(135deg, #0B2B4F 0%, #123a5a 50%, #0B2B4F 100%);
+            border-radius: 48px;
+            padding: 4rem 3rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 40px -15px rgba(11,43,79,0.4);
+            border: 1px solid rgba(212,175,55,0.2);
+        }
+        
+        .bienvenida-institucional::before {
+            content: "✟";
             position: absolute;
-            right: 2%;
-            top: 15%;
-            width: 40%;
-            height: 70%;
-            opacity: 0.25;
-            z-index: 2;
+            font-size: 280px;
+            right: -30px;
+            bottom: -80px;
+            opacity: 0.03;
+            color: var(--dorado);
+            font-family: serif;
             pointer-events: none;
         }
-        .tech-bg-icons i {
+        
+        .bienvenida-institucional::after {
+            content: "⚙️";
             position: absolute;
-            font-size: 4rem;
-            color: var(--azul-piox);
-            opacity: 0.15;
-            transform: rotate(10deg);
+            font-size: 180px;
+            left: -50px;
+            top: -40px;
+            opacity: 0.04;
+            pointer-events: none;
         }
-        .tech-bg-icons i:nth-child(1) { top: 5%; right: 20%; } 
-        .tech-bg-icons i:nth-child(2) { bottom: 20%; right: 5%; } 
-        .tech-bg-icons i:nth-child(3) { top: 40%; right: 40%; } 
-        .tech-bg-icons i:nth-child(4) { top: 70%; right: 30%; } 
+        
+        .bienvenida-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+        }
+        
+        .bienvenida-content .insignia {
+            display: inline-block;
+            background: rgba(212,175,55,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(212,175,55,0.4);
+            color: var(--dorado-suave);
+        }
+        
+        .bienvenida-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dorado);
+            font-weight: 700;
+        }
+        
+        .bienvenida-content .institucion-nombre {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            letter-spacing: -0.5px;
+            border-bottom: 2px solid var(--dorado);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        .mensaje-institucional {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.08);
+            padding: 2.5rem;
+            border-radius: 32px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(212,175,55,0.25);
+            text-align: left;
+            line-height: 1.7;
+        }
+        
+        .mensaje-institucional p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+        
+        .mensaje-institucional .frase-final {
+            margin-top: 1.8rem;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dorado);
+            font-style: italic;
+            border-top: 1px solid rgba(212,175,55,0.3);
+            padding-top: 1.5rem;
+        }
+        
+        .fecha-destacada {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--dorado) 0%, #b8860b 100%);
+            color: var(--azul-piox);
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            margin-top: 2rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
 
         section {
             padding: 5rem 0;
             position: relative;
             z-index: 5;
         }
+        
         .section-title {
             font-size: 2.4rem;
             color: var(--azul-piox);
             margin-bottom: 1rem;
             text-align: center;
         }
+        
         .section-title span {
             color: var(--verde-teal);
         }
+        
         .section-sub {
             text-align: center;
             max-width: 700px;
             margin: 0 auto 3rem;
             color: #4a5b6b;
         }
-
+        
         .categorias-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
+        
         .card-cat {
             background: white;
             border-radius: 28px;
@@ -350,40 +418,27 @@
             border: 1px solid var(--sutil-borde);
             transition: all 0.3s ease;
             text-align: center;
-            backdrop-filter: blur(2px);
         }
+        
         .card-cat:hover {
             transform: translateY(-10px);
-            border-color: var(--azul-piox);
+            border-color: var(--dorado);
             box-shadow: 0 30px 40px -15px rgba(11,43,79,0.2);
         }
+        
         .card-cat i {
             font-size: 2.8rem;
             color: var(--verde-teal);
             margin-bottom: 1.5rem;
-            background: rgba(29,122,122,0.08);
-            padding: 0.8rem;
-            border-radius: 30px;
         }
-        .card-cat h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--azul-piox);
-        }
-        .card-cat p {
-            color: #4d6275;
-            font-size: 0.95rem;
-        }
-
+        
         .reglamento-box {
             background: var(--azul-claro);
             border-radius: 48px;
             padding: 3rem 2rem;
             text-align: center;
-            border: 1px solid rgba(11,43,79,0.15);
         }
-
-        /* Sección de inscripción con botón grande */
+        
         .inscripcion-box {
             background: linear-gradient(145deg, var(--azul-piox) 0%, #0a2038 100%);
             border-radius: 48px;
@@ -391,43 +446,27 @@
             text-align: center;
             color: white;
         }
+        
         .inscripcion-box h2 {
             color: white;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
         }
+        
         .inscripcion-box h2 span {
-            color: #7bc4c4;
+            color: var(--dorado);
         }
-        .inscripcion-box p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto 1.5rem;
-        }
-        .inscripcion-box .btn-google-form {
-            background: white;
-            color: var(--azul-piox);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-        .inscripcion-box .btn-google-form:hover {
-            background: var(--verde-teal);
-            color: white;
-        }
-
-        /* MAPA ACTUALIZADO */
+        
         .mapa-container {
             border-radius: 40px;
             overflow: hidden;
             box-shadow: var(--sombra-card);
-            border: 1px solid var(--sutil-borde);
             height: 450px;
-            margin: 2rem 0;
         }
+        
         .mapa-container iframe {
             width: 100%;
             height: 100%;
         }
+        
         .direccion-card {
             background: var(--azul-claro);
             border-radius: 30px;
@@ -439,10 +478,7 @@
             align-items: center;
             justify-content: space-between;
         }
-        .direccion-card i {
-            color: var(--verde-teal);
-        }
-
+        
         .cta-final {
             background: linear-gradient(145deg, var(--azul-piox) 0%, #0B2B4F 100%);
             color: white;
@@ -450,30 +486,12 @@
             padding: 5rem 3rem;
             text-align: center;
         }
-        .cta-final h2 {
-            font-size: 3rem;
-            color: white;
-        }
-        .cta-final .btn-google-form {
-            background: white;
-            color: var(--azul-piox);
-            font-size: 1.3rem;
-            padding: 1.2rem 3.5rem;
-            margin-top: 2rem;
-            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
-        }
-        .cta-final .btn-google-form:hover {
-            background: var(--verde-teal);
-            color: white;
-        }
-
+        
         footer {
             text-align: center;
             padding: 2rem;
             color: #6c8198;
             border-top: 1px solid var(--sutil-borde);
-            position: relative;
-            z-index: 10;
         }
         
         .footer-logos {
@@ -488,57 +506,51 @@
             height: 60px;
             width: auto;
             opacity: 0.8;
-            transition: opacity 0.3s ease;
         }
         
-        .footer-logos img:hover {
-            opacity: 1;
+        .lema-footer {
+            color: var(--dorado);
+            font-weight: 500;
+            margin-top: 0.5rem;
         }
-
-        @media (max-width: 768px) {
-            .hero-details { flex-direction: column; gap: 0.8rem; }
-            .container { padding: 0 1.5rem; }
-            .cta-final { border-radius: 40px; }
-            .mapa-container { height: 300px; }
-            .inscripcion-box h2 { font-size: 1.8rem; }
-            .cta-final h2 { font-size: 2rem; }
-        }
-
+        
         .reveal {
             opacity: 0;
             transform: translateY(25px);
             transition: all 0.8s ease;
         }
+        
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
+        
+        @media (max-width: 768px) {
+            .hero-details { flex-direction: column; gap: 0.8rem; }
+            .container { padding: 0 1.5rem; }
+            .bienvenida-institucional { padding: 2rem 1.5rem; }
+            .bienvenida-content h2 { font-size: 1.6rem; }
+            .mensaje-institucional { padding: 1.5rem; }
+            .mensaje-institucional p { font-size: 0.95rem; }
+            .mapa-container { height: 300px; }
+            .cta-final { border-radius: 40px; }
+        }
     </style>
 </head>
 <body>
-    <!-- HERO SECTION CON LOGOS GIGANTES SEMI-FUERA -->
-    <section class="hero circuit-bg" id="inicio">
-        <div class="circuit-lines"></div>
-        
-        <!-- LOGOS GIGANTES Y TRANSPARENTES -->
+    <!-- HERO SECTION -->
+    <section class="hero" id="inicio">
         <div class="hero-logos">
-            <img src="images/logo-piox.png" alt="Colegio San Pío X" class="logo-esquina logo-piox">
-            <img src="images/logo-roboxperience.png" alt="RoboXperience" class="logo-esquina logo-robox">
+            <img src="images/logo-piox.png" alt="Unidad Educativa San Pío X" class="logo-esquina logo-piox" onerror="this.style.display='none'">
+            <img src="images/logo-roboxperience.png" alt="RoboXperience" class="logo-esquina logo-robox" onerror="this.style.display='none'">
         </div>
         
-        <div class="tech-bg-icons">
-            <i class="fas fa-microchip"></i>
-            <i class="fas fa-robot"></i>
-            <i class="fas fa-bolt"></i>
-            <i class="fas fa-satellite-dish"></i>
-        </div>
-        
-        <div class="container hero-content">
+        <div class="container hero-content animate-fade-up">
             <h1>RoboXperience <span>2026</span></h1>
             <div class="hero-sub">Donde la innovación, la tecnología y el talento estudiantil se encuentran.</div>
-            <div class="hero-details">
-                <div><i class="fas fa-calendar-alt"></i> Miércoles 15 de abril</div>
-                <div><i class="fas fa-map-marker-alt"></i> Campus Quillán Loma – Colegio San Pío X</div>
+            <div class="hero-details" id="hero-fecha">
+                <div><i class="fas fa-calendar-alt"></i> <span id="fecha-evento">Cargando...</span></div>
+                <div><i class="fas fa-map-marker-alt"></i> Campus Quillán Loma – Unidad Educativa San Pío X</div>
                 <div><i class="fas fa-globe-americas"></i> Ambato, Ecuador</div>
             </div>
             <div class="hero-buttons">
@@ -548,16 +560,51 @@
         </div>
     </section>
 
+    <!-- ===== MENSAJE INSTITUCIONAL (VERSIÓN ORIGINAL MEJORADA) ===== -->
+    <section class="container reveal">
+        <div class="bienvenida-institucional">
+            <div class="bienvenida-content">
+                <div class="insignia">
+                    <i class="fas fa-heart"></i> Primera Edición
+                </div>
+                <h2>Una invitación con profundo significado</h2>
+                <div class="institucion-nombre">
+                    Unidad Educativa San Pío X
+                </div>
+                <div class="mensaje-institucional">
+                    <p><strong>Estimada comunidad educativa, familias, clubes y apasionados de la robótica:</strong></p>
+                    
+                    <p>Con gran alegría y esperanza, como institución educativa católica comprometida con la formación integral de nuestros jóvenes, tenemos el honor de invitarles a ser parte de la <strong>primera edición de RoboXperience 2026</strong>.</p>
+                    
+                    <p>Este encuentro nace como una expresión de nuestro deseo de fomentar el talento, la creatividad y el desarrollo tecnológico, guiados siempre por valores que promueven el respeto, la colaboración y el bien común.</p>
+                    
+                    <p>Creemos firmemente que la tecnología, puesta al servicio de la persona, es una herramienta poderosa para construir un futuro mejor. Por ello, abrimos este espacio para que clubes de robótica, estudiantes, instituciones educativas y familias se reúnan en una verdadera celebración del conocimiento, la innovación y el aprendizaje compartido.</p>
+                    
+                    <p>En esta jornada, celebraremos no solo las habilidades técnicas, sino también el esfuerzo, la perseverancia y el trabajo en equipo que inspiran a nuestros jóvenes a crecer como líderes comprometidos con la sociedad.</p>
+                    
+                    <p>Los esperamos para vivir juntos esta valiosa experiencia, donde la tecnología y los valores se unen para dar vida a grandes sueños.</p>
+                    
+                    <div class="frase-final">
+                        <i class="fas fa-heart" style="color: var(--dorado);"></i> Somos Pío corazón <i class="fas fa-heart" style="color: var(--dorado);"></i>
+                    </div>
+                </div>
+                <div class="fecha-destacada" id="fecha-destacada">
+                    <i class="fas fa-calendar-check"></i> 21 de mayo de 2026 · Campus Quillán Loma
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SOBRE EL EVENTO -->
     <section class="container reveal">
         <h2 class="section-title">Tecnología que <span>transforma</span></h2>
         <div style="max-width: 850px; margin: 0 auto; text-align: center; font-size: 1.2rem; color: #2f4052; background: rgba(226,240,250,0.5); padding: 2.5rem; border-radius: 60px;">
-            <p>RoboXperience es un torneo colegial de robótica que impulsa el pensamiento lógico, la creatividad, el trabajo en equipo y el orgullo cultural. Un espacio donde los estudiantes demuestran que la tecnología puede transformar el futuro.</p>
+            <p>RoboXperience es un torneo colegial de robótica que impulsa el pensamiento lógico, la creatividad, el trabajo en equipo y los valores humanos. Un espacio donde los estudiantes demuestran que la tecnología, puesta al servicio del bien común, puede transformar el futuro.</p>
         </div>
     </section>
 
     <!-- CATEGORÍAS DEL TORNEO -->
-    <section class="container circuit-bg reveal">
+    <section class="container reveal">
         <h2 class="section-title">Categorías <span>del torneo</span></h2>
         <p class="section-sub">Cuatro desafíos que combinan precisión, estrategia y cultura ecuatoriana</p>
         <div class="categorias-grid">
@@ -584,33 +631,35 @@
         </div>
     </section>
 
-    <!-- REGLAMENTOS (Google Drive) -->
+    <!-- REGLAMENTOS -->
     <section class="container reveal" id="reglamentos">
         <div class="reglamento-box">
             <i class="fas fa-file-pdf" style="font-size: 3rem; color: var(--verde-teal);"></i>
             <h2 class="section-title" style="margin-bottom: 0.2rem;">Reglamentos <span>oficiales</span></h2>
             <p style="max-width: 500px; margin: 0.5rem auto;">Descarga toda la información técnica, bases y condiciones en PDF</p>
             <a href="https://drive.google.com/drive/folders/10Ad--Cxg7kyr1FnvpGFexX1HuYoOICW8?usp=sharing" class="btn-drive" target="_blank"><i class="fab fa-google-drive"></i> Descargar Reglamentos Oficiales</a>
-            <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">* Los documentos están alojados en Google Drive</p>
         </div>
     </section>
 
-    <!-- INSCRIPCIONES - Botón a Google Forms -->
+    <!-- INSCRIPCIONES -->
     <section class="container reveal" id="inscripciones">
         <div class="inscripcion-box">
-            <i class="fas fa-edit" style="font-size: 3rem; color: #7bc4c4; margin-bottom: 1rem; display: inline-block;"></i>
+            <i class="fas fa-edit" style="font-size: 3rem; color: var(--dorado); margin-bottom: 1rem; display: inline-block;"></i>
             <h2>Formulario de <span>inscripción</span></h2>
-            <p>Completa tus datos en nuestro formulario oficial de Google Forms y asegura tu participación en RoboXperience 2026.</p>
+            <p>Completa tus datos en nuestro formulario oficial de Google Forms y asegura tu participación en la primera edición de RoboXperience 2026.</p>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSclYAleqa8nX-tnQaSjpyzhcc4ac6Di5KyYH9P-J5eLa_uYtw/viewform?usp=pp_url" target="_blank" class="btn-google-form">
                 <i class="fab fa-google"></i> Ir al formulario de inscripción
             </a>
             <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
                 <i class="fas fa-lock"></i> Tus datos están seguros y protegidos
             </p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                <i class="fas fa-clock"></i> <strong>Fecha límite de inscripción: 15 de mayo de 2026</strong>
+            </p>
         </div>
     </section>
 
-    <!-- UBICACIÓN ACTUALIZADA -->
+    <!-- UBICACIÓN -->
     <section class="container reveal">
         <h2 class="section-title">Encuéntranos en <span>Quillán Loma</span></h2>
         <div class="mapa-container">
@@ -619,7 +668,7 @@
         <div class="direccion-card">
             <div>
                 <i class="fas fa-map-pin"></i> 
-                <strong>Campus Quillán Loma – Colegio San Pío X</strong><br>
+                <strong>Campus Quillán Loma – Unidad Educativa San Pío X</strong><br>
                 Vía a Quillán Loma, Ambato, Ecuador
             </div>
             <div>
@@ -634,10 +683,10 @@
         </div>
     </section>
 
-    <!-- CTA FINAL EMOTIVO -->
+    <!-- CTA FINAL -->
     <section class="container reveal" style="padding-bottom: 3rem;">
         <div class="cta-final">
-            <h2>El futuro no se espera.<br>Se construye.</h2>
+            <h2>El futuro no se espera.<br>Se construye con valores y tecnología.</h2>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSclYAleqa8nX-tnQaSjpyzhcc4ac6Di5KyYH9P-J5eLa_uYtw/viewform?usp=pp_url" target="_blank" class="btn-google-form">
                 <i class="fas fa-check-circle"></i> Inscribirme en RoboXperience
             </a>
@@ -646,15 +695,49 @@
 
     <footer>
         <div class="footer-logos">
-            <img src="images/logo-piox.png" alt="Colegio San Pío X">
-            <img src="images/logo-roboxperience.png" alt="RoboXperience">
+            <img src="images/logo-piox.png" alt="Unidad Educativa San Pío X" onerror="this.style.display='none'">
+            <img src="images/logo-roboxperience.png" alt="RoboXperience" onerror="this.style.display='none'">
         </div>
-        <p>RoboXperience 2026 · Colegio San Pío X · Ambato – Ecuador · Todos los derechos reservados</p>
-        <p style="margin-top: 0.8rem; font-size: 0.9rem;"><i class="fas fa-robot"></i> Innovación, educación y cultura</p>
+        <p>RoboXperience 2026 · Primera Edición · Unidad Educativa San Pío X · Ambato – Ecuador</p>
+        <p class="lema-footer"><i class="fas fa-heart"></i> Somos Pío corazón · Tecnología con valores <i class="fas fa-heart"></i></p>
     </footer>
 
-    <!-- script para animaciones de scroll -->
     <script>
+        // ========== FECHA INTELIGENTE: SIEMPRE 21 DE MAYO ==========
+        function obtenerProximo21Mayo() {
+            const hoy = new Date();
+            let año = hoy.getFullYear();
+            let fechaEvento = new Date(año, 4, 21);
+            
+            if (hoy > fechaEvento) {
+                fechaEvento = new Date(año + 1, 4, 21);
+            }
+            return fechaEvento;
+        }
+
+        function formatearFechaLarga(fecha) {
+            const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            return fecha.toLocaleDateString('es-ES', opciones);
+        }
+
+        function actualizarFechas() {
+            const fechaEvento = obtenerProximo21Mayo();
+            const fechaFormateadaLarga = formatearFechaLarga(fechaEvento);
+            const año = fechaEvento.getFullYear();
+            
+            const fechaElement = document.getElementById('fecha-evento');
+            if (fechaElement) {
+                fechaElement.innerHTML = fechaFormateadaLarga.charAt(0).toUpperCase() + fechaFormateadaLarga.slice(1);
+            }
+            
+            const fechaDestacada = document.getElementById('fecha-destacada');
+            if (fechaDestacada) {
+                fechaDestacada.innerHTML = `<i class="fas fa-calendar-check"></i> 21 de mayo de ${año} · Campus Quillán Loma`;
+            }
+        }
+
+        actualizarFechas();
+        
         // Animaciones de scroll
         (function() {
             const reveals = document.querySelectorAll('.reveal');
@@ -672,20 +755,5 @@
             window.addEventListener('load', checkReveal);
         })();
     </script>
-
-    <!-- destellos decorativos -->
-    <style>
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 10%;
-            right: 5%;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(29,122,122,0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: 0;
-        }
-    </style>
 </body>
 </html>
