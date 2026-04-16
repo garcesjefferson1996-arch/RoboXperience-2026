@@ -2,15 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>RoboXperience 2026 – Torneo de robótica · Unidad Educativa San Pío X</title>
     <!-- SEO mejorado -->
     <meta name="description" content="RoboXperience 2026: primera edición del torneo colegial de robótica organizado por la Unidad Educativa San Pío X en Ambato, Ecuador. Categorías: seguidor de línea, soccer, robot bailarín, mini sumo. Inscripciones abiertas.">
     <meta name="keywords" content="robótica, torneo, Unidad Educativa San Pío X, Ambato, Ecuador, STEM, seguidor de línea, robot soccer, mini sumo, cultura ecuatoriana, colegio católico">
-    <!-- Fuentes elegantes -->
+    <!-- Fuentes tecnológicas -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -21,28 +21,33 @@
         }
 
         :root {
-            --azul-piox: #0B2B4F;
-            --verde-teal: #1D7A7A;
-            --dorado: #D4AF37;
-            --dorado-suave: #F3E5AB;
-            --azul-claro: #E2F0FA;
-            --blanco-puro: #FFFFFF;
-            --gris-oscuro: #1E2A3A;
-            --sutil-borde: rgba(11, 43, 79, 0.1);
-            --sombra-card: 0 20px 30px -10px rgba(11, 43, 79, 0.12);
+            --bg-dark: #0A0F1E;
+            --bg-darker: #050811;
+            --bg-card: rgba(18, 25, 45, 0.85);
+            --primary-cyan: #00E5FF;
+            --primary-purple: #B026FF;
+            --primary-blue: #0088FF;
+            --accent-gold: #FFD700;
+            --text-light: #E2E8F0;
+            --text-muted: #94A3B8;
+            --border-glow: rgba(0, 229, 255, 0.3);
         }
 
         body {
-            font-family: "Inter", sans-serif;
-            background-color: var(--blanco-puro);
-            color: var(--gris-oscuro);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                linear-gradient(rgba(0, 229, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 229, 255, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            color: var(--text-light);
             line-height: 1.5;
             scroll-behavior: smooth;
             overflow-x: hidden;
         }
 
         h1, h2, h3 {
-            font-family: "Outfit", sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             font-weight: 600;
             letter-spacing: -0.02em;
         }
@@ -53,6 +58,7 @@
             padding: 0 2rem;
         }
 
+        /* Animaciones */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -64,159 +70,203 @@
             }
         }
 
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 5px var(--primary-cyan), 0 0 10px var(--primary-cyan); }
+            50% { box-shadow: 0 0 20px var(--primary-cyan), 0 0 30px var(--primary-cyan); }
+        }
+
         .animate-fade-up {
             animation: fadeInUp 0.8s ease forwards;
         }
 
+        /* Glassmorphism */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        /* Navegación */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 15, 30, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-glow);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-nav {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-family: 'Space Grotesk', monospace;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-cyan);
+            text-shadow: 0 0 10px var(--primary-cyan);
+        }
+
         /* Botones */
-        .btn-primario {
-            background-color: var(--azul-piox);
-            color: white;
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
             border: none;
             padding: 0.9rem 2.2rem;
             border-radius: 50px;
             font-weight: 600;
             font-size: 1rem;
+            color: white;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 14px rgba(11,43,79,0.3);
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             text-decoration: none;
-            border: 1px solid transparent;
-        }
-        .btn-primario:hover {
-            background-color: transparent;
-            color: var(--azul-piox);
-            border-color: var(--azul-piox);
-            box-shadow: 0 8px 20px rgba(11,43,79,0.15);
-            transform: translateY(-2px);
         }
 
-        .btn-secundario {
-            background-color: transparent;
-            color: var(--azul-piox);
-            border: 1.5px solid var(--azul-piox);
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1.5px solid var(--primary-cyan);
             padding: 0.9rem 2.2rem;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
+            color: var(--primary-cyan);
             transition: all 0.3s ease;
-            display: inline-block;
             text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
-        .btn-secundario:hover {
-            background-color: var(--azul-piox);
-            color: white;
-            border-color: var(--azul-piox);
-            transform: translateY(-2px);
+
+        .btn-secondary:hover {
+            background: rgba(0, 229, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
         }
 
         .btn-drive {
-            background: var(--verde-teal);
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-cyan));
             color: white;
             border: none;
             padding: 1rem 3rem;
             border-radius: 60px;
             font-weight: 600;
             font-size: 1.2rem;
-            margin-top: 2rem;
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            transition: 0.2s;
-            box-shadow: 0 10px 20px rgba(29,122,122,0.3);
+            transition: 0.3s;
             text-decoration: none;
         }
-        .btn-drive i { font-size: 1.4rem; }
+
         .btn-drive:hover {
-            background: white;
-            color: var(--verde-teal);
-            box-shadow: 0 8px 18px rgba(29,122,122,0.4);
             transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.5);
         }
 
         .btn-google-form {
-            background: linear-gradient(135deg, #0B2B4F 0%, #1D7A7A 100%);
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
             color: white;
             border: none;
             padding: 1.2rem 3.5rem;
             border-radius: 60px;
             font-weight: 700;
             font-size: 1.3rem;
-            margin-top: 1rem;
             display: inline-flex;
             align-items: center;
             gap: 12px;
             transition: 0.3s;
-            box-shadow: 0 15px 25px rgba(11,43,79,0.3);
             text-decoration: none;
-            cursor: pointer;
-        }
-        .btn-google-form i { font-size: 1.6rem; }
-        .btn-google-form:hover {
-            transform: translateY(-5px);
-            background: linear-gradient(135deg, #1D7A7A 0%, #0B2B4F 100%);
-            box-shadow: 0 20px 30px rgba(11,43,79,0.4);
         }
 
-        /* Hero */
+        .btn-google-form:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.6);
+        }
+
+        /* Hero con Logo GRANDE */
         .hero {
             min-height: 90vh;
             display: flex;
             align-items: center;
             position: relative;
-            background: radial-gradient(ellipse at 70% 30%, rgba(226,240,250,0.7) 0%, white 70%);
             padding: 2rem 0;
             overflow: hidden;
         }
-        
-        .hero-logos {
+
+        .hero::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .logo-esquina {
-            position: absolute;
-            width: auto;
-            filter: drop-shadow(0 15px 20px rgba(0,0,0,0.15));
-            transition: all 0.5s ease;
-            opacity: 0.3;
-            z-index: 1;
-        }
-        
-        .logo-piox {
-            top: 50%;
-            left: -90px;
-            height: 700px;
-            transform: translateY(-50%) rotate(-8deg);
-            opacity: 0.05;
-        }
-        
-        .logo-robox {
+            right: 0;
             bottom: 0;
-            right: -100px;
-            height: 600px;
-            transform: rotate(10deg);
-            opacity: 0.2;
+            background: radial-gradient(circle at 50% 30%, rgba(0, 229, 255, 0.15) 0%, transparent 70%);
+            pointer-events: none;
         }
-        
-        @media (max-width: 768px) {
-            .logo-piox {
-                left: -40px;
-                height: 300px;
-                opacity: 0.2;
-            }
-            .logo-robox {
-                right: -50px;
-                height: 350px;
-                opacity: 0.15;
-            }
+
+        .hero-logo {
+            position: relative;
+            z-index: 10;
+            max-width: 100%;
+            margin: 0 auto 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-logo img {
+            width: 100%;
+            max-width: 500px;  /* Logo más ancho y grande */
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(0, 229, 255, 0.4));
+            transition: all 0.3s ease;
+        }
+
+        .hero-logo img:hover {
+            filter: drop-shadow(0 0 45px rgba(0, 229, 255, 0.6));
+            transform: scale(1.02);
         }
 
         .hero-content {
@@ -225,27 +275,15 @@
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
-            padding: 4rem 0;
-        }
-        
-        .hero h1 {
-            font-size: clamp(3rem, 10vw, 5.5rem);
-            line-height: 1.1;
-            color: var(--azul-piox);
-            margin-bottom: 1.5rem;
-        }
-        
-        .hero h1 span {
-            color: var(--verde-teal);
         }
         
         .hero-sub {
             font-size: 1.4rem;
             font-weight: 400;
-            color: #2c3e4f;
+            color: var(--text-light);
             max-width: 600px;
             margin: 0 auto 2rem;
-            border-left: 4px solid var(--dorado);
+            border-left: 4px solid var(--primary-cyan);
             padding-left: 1.8rem;
             text-align: left;
         }
@@ -256,29 +294,29 @@
             gap: 2rem;
             font-size: 1.1rem;
             margin-bottom: 2.8rem;
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(4px);
+            background: rgba(18, 25, 45, 0.8);
+            backdrop-filter: blur(8px);
             padding: 1.2rem 2rem;
             border-radius: 60px;
-            border: 1px solid var(--sutil-borde);
+            border: 1px solid var(--border-glow);
             justify-content: center;
         }
         
         .hero-details i {
-            color: var(--verde-teal);
+            color: var(--primary-cyan);
             margin-right: 0.5rem;
         }
 
-        /* ===== SECCIÓN DE BIENVENIDA INSTITUCIONAL ===== */
+        /* Bienvenida Institucional */
         .bienvenida-institucional {
-            background: linear-gradient(135deg, #0B2B4F 0%, #123a5a 50%, #0B2B4F 100%);
+            background: linear-gradient(135deg, rgba(11, 43, 79, 0.9) 0%, rgba(0, 136, 255, 0.2) 100%);
+            backdrop-filter: blur(10px);
             border-radius: 48px;
             padding: 4rem 3rem;
             margin: 2rem 0;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 25px 40px -15px rgba(11,43,79,0.4);
-            border: 1px solid rgba(212,175,55,0.2);
+            border: 1px solid rgba(0, 229, 255, 0.3);
         }
         
         .bienvenida-institucional::before {
@@ -288,7 +326,7 @@
             right: -30px;
             bottom: -80px;
             opacity: 0.03;
-            color: var(--dorado);
+            color: var(--primary-cyan);
             font-family: serif;
             pointer-events: none;
         }
@@ -312,21 +350,23 @@
         
         .bienvenida-content .insignia {
             display: inline-block;
-            background: rgba(212,175,55,0.2);
+            background: rgba(0, 229, 255, 0.2);
             padding: 0.5rem 1.5rem;
             border-radius: 60px;
             font-size: 0.9rem;
             letter-spacing: 2px;
             margin-bottom: 1.5rem;
-            border: 1px solid rgba(212,175,55,0.4);
-            color: var(--dorado-suave);
+            border: 1px solid var(--primary-cyan);
+            color: var(--primary-cyan);
         }
         
         .bienvenida-content h2 {
             font-size: 2.2rem;
             margin-bottom: 1.5rem;
-            color: var(--dorado);
-            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         .bienvenida-content .institucion-nombre {
@@ -334,7 +374,7 @@
             font-weight: 700;
             margin-bottom: 2rem;
             letter-spacing: -0.5px;
-            border-bottom: 2px solid var(--dorado);
+            border-bottom: 2px solid var(--primary-cyan);
             display: inline-block;
             padding-bottom: 0.5rem;
         }
@@ -342,11 +382,11 @@
         .mensaje-institucional {
             max-width: 900px;
             margin: 0 auto;
-            background: rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.05);
             padding: 2.5rem;
             border-radius: 32px;
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(212,175,55,0.25);
+            border: 1px solid rgba(0, 229, 255, 0.2);
             text-align: left;
             line-height: 1.7;
         }
@@ -361,48 +401,196 @@
             text-align: center;
             font-size: 1.3rem;
             font-weight: 600;
-            color: var(--dorado);
+            color: var(--primary-cyan);
             font-style: italic;
-            border-top: 1px solid rgba(212,175,55,0.3);
+            border-top: 1px solid rgba(0, 229, 255, 0.3);
             padding-top: 1.5rem;
         }
         
         .fecha-destacada {
             display: inline-block;
-            background: linear-gradient(135deg, var(--dorado) 0%, #b8860b 100%);
-            color: var(--azul-piox);
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            color: white;
             padding: 0.8rem 2rem;
             border-radius: 60px;
             margin-top: 2rem;
             font-weight: 700;
             font-size: 1.2rem;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
         }
 
-        section {
-            padding: 5rem 0;
-            position: relative;
-            z-index: 5;
+        /* Premios */
+        .premios-section {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border-radius: 48px;
+            padding: 4rem 2rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(0, 229, 255, 0.2);
         }
-        
-        .section-title {
-            font-size: 2.4rem;
-            color: var(--azul-piox);
+
+        .premios-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .premios-header .badge-premio {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
             margin-bottom: 1rem;
-            text-align: center;
         }
-        
-        .section-title span {
-            color: var(--verde-teal);
+
+        .premios-header h2 {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, var(--primary-cyan), white);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        
-        .section-sub {
-            text-align: center;
+
+        .premios-header p {
             max-width: 700px;
-            margin: 0 auto 3rem;
-            color: #4a5b6b;
+            margin: 1rem auto 0;
+            color: var(--text-muted);
         }
-        
+
+        .premios-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .premio-card {
+            display: flex;
+            flex-wrap: wrap;
+            background: rgba(10, 15, 30, 0.8);
+            border-radius: 32px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .premio-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.2);
+        }
+
+        .premio-imagen {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .premio-imagen img {
+            width: 100%;
+            max-width: 220px;
+            height: auto;
+            border-radius: 20px;
+            object-fit: contain;
+        }
+
+        .premio-info {
+            flex: 2;
+            padding: 2rem;
+        }
+
+        .premio-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-cyan);
+        }
+
+        .premio-info .torneo-nombre {
+            display: inline-block;
+            background: rgba(0, 229, 255, 0.15);
+            color: var(--primary-cyan);
+            padding: 0.2rem 1rem;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .pase-destacado {
+            background: rgba(0, 229, 255, 0.1);
+            border-left: 4px solid var(--primary-cyan);
+            padding: 0.8rem 1rem;
+            border-radius: 16px;
+            margin-top: 1rem;
+        }
+
+        .descripcion {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .ubicacion {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 229, 255, 0.1);
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            color: var(--primary-cyan);
+        }
+
+        /* Auspiciantes */
+        .sponsors-section {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border-radius: 48px;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            text-align: center;
+            border: 1px solid rgba(0, 229, 255, 0.2);
+        }
+
+        .sponsors-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .sponsor-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 40px;
+            padding: 1.5rem 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 229, 255, 0.1);
+        }
+
+        .sponsor-item:hover {
+            transform: scale(1.05);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+        }
+
+        .sponsor-item img {
+            max-height: 75px;
+            width: auto;
+        }
+
+        /* Categorías */
         .categorias-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -411,54 +599,76 @@
         }
         
         .card-cat {
-            background: white;
+            background: var(--bg-card);
+            backdrop-filter: blur(8px);
             border-radius: 28px;
             padding: 2rem 1.5rem;
-            box-shadow: var(--sombra-card);
-            border: 1px solid var(--sutil-borde);
+            border: 1px solid rgba(0, 229, 255, 0.15);
             transition: all 0.3s ease;
             text-align: center;
         }
         
         .card-cat:hover {
             transform: translateY(-10px);
-            border-color: var(--dorado);
-            box-shadow: 0 30px 40px -15px rgba(11,43,79,0.2);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.2);
         }
         
         .card-cat i {
             font-size: 2.8rem;
-            color: var(--verde-teal);
+            color: var(--primary-cyan);
             margin-bottom: 1.5rem;
         }
         
+        .card-cat h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-cat p {
+            color: var(--text-muted);
+        }
+
+        /* Otras secciones */
+        .section-title {
+            font-size: 2.4rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-cyan), white);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .section-sub {
+            text-align: center;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
         .reglamento-box {
-            background: var(--azul-claro);
+            background: var(--bg-card);
+            backdrop-filter: blur(8px);
             border-radius: 48px;
             padding: 3rem 2rem;
             text-align: center;
+            border: 1px solid rgba(0, 229, 255, 0.2);
         }
         
         .inscripcion-box {
-            background: linear-gradient(145deg, var(--azul-piox) 0%, #0a2038 100%);
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.1), rgba(176, 38, 255, 0.1));
+            backdrop-filter: blur(8px);
             border-radius: 48px;
             padding: 4rem 2rem;
             text-align: center;
-            color: white;
-        }
-        
-        .inscripcion-box h2 {
-            color: white;
-        }
-        
-        .inscripcion-box h2 span {
-            color: var(--dorado);
+            border: 1px solid rgba(0, 229, 255, 0.3);
         }
         
         .mapa-container {
-            border-radius: 40px;
+            border-radius: 28px;
             overflow: hidden;
-            box-shadow: var(--sombra-card);
+            border: 1px solid var(--primary-cyan);
             height: 450px;
         }
         
@@ -468,7 +678,8 @@
         }
         
         .direccion-card {
-            background: var(--azul-claro);
+            background: var(--bg-card);
+            backdrop-filter: blur(8px);
             border-radius: 30px;
             padding: 1.5rem 2rem;
             margin-top: 1rem;
@@ -477,12 +688,14 @@
             gap: 2rem;
             align-items: center;
             justify-content: space-between;
+            border: 1px solid rgba(0, 229, 255, 0.2);
         }
         
         .cta-final {
-            background: linear-gradient(145deg, var(--azul-piox) 0%, #0B2B4F 100%);
-            color: white;
-            border-radius: 80px 80px 30px 30px;
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(176, 38, 255, 0.15));
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--primary-cyan);
+            border-radius: 60px;
             padding: 5rem 3rem;
             text-align: center;
         }
@@ -490,8 +703,8 @@
         footer {
             text-align: center;
             padding: 2rem;
-            color: #6c8198;
-            border-top: 1px solid var(--sutil-borde);
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-glow);
         }
         
         .footer-logos {
@@ -505,11 +718,11 @@
         .footer-logos img {
             height: 60px;
             width: auto;
-            opacity: 0.8;
+            opacity: 0.7;
         }
         
         .lema-footer {
-            color: var(--dorado);
+            color: var(--primary-cyan);
             font-weight: 500;
             margin-top: 0.5rem;
         }
@@ -533,20 +746,40 @@
             .mensaje-institucional { padding: 1.5rem; }
             .mensaje-institucional p { font-size: 0.95rem; }
             .mapa-container { height: 300px; }
-            .cta-final { border-radius: 40px; }
+            .nav-links { gap: 1rem; font-size: 0.9rem; }
+            .premio-card { flex-direction: column; }
+            .premios-header h2 { font-size: 1.6rem; }
+            .sponsors-grid { gap: 1rem; }
+            .hero-logo img { max-width: 280px; }
+            .section-title { font-size: 1.8rem; }
+            .hero-sub { font-size: 1.1rem; }
+            .hero-details { font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
-    <!-- HERO SECTION -->
-    <section class="hero" id="inicio">
-        <div class="hero-logos">
-            <img src="images/logo-piox.png" alt="Unidad Educativa San Pío X" class="logo-esquina logo-piox" onerror="this.style.display='none'">
-            <img src="images/logo-roboxperience.png" alt="RoboXperience" class="logo-esquina logo-robox" onerror="this.style.display='none'">
+
+    <!-- Navegación Sticky -->
+    <div class="navbar">
+        <div class="container nav-container">
+            <div class="logo-nav">RoboXperience</div>
+            <div class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#evento">Evento</a>
+                <a href="#premios">Premios</a>
+                <a href="#auspiciantes">Auspiciantes</a>
+                <a href="#categorias">Categorías</a>
+                <a href="#inscripciones">Inscripción</a>
+            </div>
         </div>
-        
+    </div>
+
+    <!-- HERO SECTION CON LOGO GRANDE -->
+    <section class="hero" id="inicio">
         <div class="container hero-content animate-fade-up">
-            <h1>RoboXperience <span>2026</span></h1>
+            <div class="hero-logo">
+                <img src="images/logoR.png" alt="RoboXperience" onerror="this.src='https://placehold.co/500x200/0A0F1E/00E5FF?text=RoboXperience'">
+            </div>
             <div class="hero-sub">Donde la innovación, la tecnología y el talento estudiantil se encuentran.</div>
             <div class="hero-details" id="hero-fecha">
                 <div><i class="fas fa-calendar-alt"></i> <span id="fecha-evento">Cargando...</span></div>
@@ -554,14 +787,14 @@
                 <div><i class="fas fa-globe-americas"></i> Ambato, Ecuador</div>
             </div>
             <div class="hero-buttons">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSclYAleqa8nX-tnQaSjpyzhcc4ac6Di5KyYH9P-J5eLa_uYtw/viewform?usp=pp_url" target="_blank" class="btn-primario">Inscribirse ahora</a>
-                <a href="https://drive.google.com/drive/folders/10Ad--Cxg7kyr1FnvpGFexX1HuYoOICW8?usp=sharing" target="_blank" class="btn-secundario">Ver reglamentos</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSclYAleqa8nX-tnQaSjpyzhcc4ac6Di5KyYH9P-J5eLa_uYtw/viewform?usp=pp_url" target="_blank" class="btn-primary">Inscribirse ahora</a>
+                <a href="https://drive.google.com/drive/folders/10Ad--Cxg7kyr1FnvpGFexX1HuYoOICW8?usp=sharing" target="_blank" class="btn-secondary">Ver reglamentos</a>
             </div>
         </div>
     </section>
 
-    <!-- ===== MENSAJE INSTITUCIONAL (VERSIÓN ORIGINAL MEJORADA) ===== -->
-    <section class="container reveal">
+    <!-- MENSAJE INSTITUCIONAL -->
+    <section class="container reveal" id="evento">
         <div class="bienvenida-institucional">
             <div class="bienvenida-content">
                 <div class="insignia">
@@ -585,7 +818,7 @@
                     <p>Los esperamos para vivir juntos esta valiosa experiencia, donde la tecnología y los valores se unen para dar vida a grandes sueños.</p>
                     
                     <div class="frase-final">
-                        <i class="fas fa-heart" style="color: var(--dorado);"></i> Somos Pío corazón <i class="fas fa-heart" style="color: var(--dorado);"></i>
+                        <i class="fas fa-heart" style="color: var(--primary-cyan);"></i> Somos Pío corazón <i class="fas fa-heart" style="color: var(--primary-cyan);"></i>
                     </div>
                 </div>
                 <div class="fecha-destacada" id="fecha-destacada">
@@ -595,16 +828,102 @@
         </div>
     </section>
 
+    <!-- PREMIOS · ACREDITACIONES -->
+    <section class="container reveal" id="premios">
+        <div class="premios-section">
+            <div class="premios-header">
+                <div class="badge-premio">
+                    <i class="fas fa-ticket-alt"></i> Acreditaciones a Torneos Nacionales
+                </div>
+                <h2>Lo que los <span>campeones</span> se llevan</h2>
+                <p>Los ganadores de cada categoría en RoboXperience 2026 obtendrán pases directos para participar en los torneos de robótica más importantes del Ecuador.</p>
+            </div>
+            
+            <div class="premios-grid">
+                <div class="premio-card">
+                    <div class="premio-imagen">
+                        <img src="images/campeon-roboc.jpg" alt="Robot & Science Challenger" onerror="this.src='https://placehold.co/400x300/0A0F1E/00E5FF?text=Robot%26Science'">
+                    </div>
+                    <div class="premio-info">
+                        <h3>Robot & Science Challenger</h3>
+                        <div class="torneo-nombre">
+                            <i class="fas fa-trophy"></i> Torneo Nacional de Robótica · Quito
+                        </div>
+                        <div class="pase-destacado">
+                            <i class="fas fa-passport"></i> <strong>✔ Acreditación incluida:</strong> Pase directo para los campeones de RoboXperience
+                        </div>
+                        <div class="descripcion">
+                            Robot & Science Challenger es uno de los torneos de robótica más grandes de Ecuador, celebrado principalmente en Quito. Es un evento destacado de Artil Robotics y WeRobot Academy que reúne a estudiantes, aficionados y profesionales.
+                        </div>
+                        <div class="ubicacion">
+                            <i class="fas fa-map-marker-alt"></i> Quito, Ecuador · Edición 2026
+                        </div>
+                    </div>
+                </div>
+
+                <div class="premio-card">
+                    <div class="premio-imagen">
+                        <img src="images/campeon-taita.jpg" alt="Taita Robot" onerror="this.src='https://placehold.co/400x300/0A0F1E/B026FF?text=TaitaRobot'">
+                    </div>
+                    <div class="premio-info">
+                        <h3>Taita Robot</h3>
+                        <div class="torneo-nombre">
+                            <i class="fas fa-globe-americas"></i> Competencia Nacional e Internacional · Guano, Chimborazo
+                        </div>
+                        <div class="pase-destacado">
+                            <i class="fas fa-passport"></i> <strong>✔ Acreditación incluida:</strong> Pase directo para los campeones de RoboXperience
+                        </div>
+                        <div class="descripcion">
+                            El Torneo Taita Robot es una competencia nacional e internacional de robótica educativa celebrada en Guano, Chimborazo, Ecuador. Busca impulsar la innovación, tecnología y creatividad de jóvenes talentos.
+                        </div>
+                        <div class="ubicacion">
+                            <i class="fas fa-map-marker-alt"></i> Guano, Chimborazo · Edición 2026
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem; padding: 1rem; background: rgba(0, 229, 255, 0.1); border-radius: 60px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <i class="fas fa-star" style="color: var(--primary-cyan);"></i>
+                <span>¡Conviértete en campeón y representa a Ecuador en los escenarios más importantes de la robótica nacional!</span>
+                <i class="fas fa-star" style="color: var(--primary-cyan);"></i>
+            </div>
+        </div>
+    </section>
+
     <!-- SOBRE EL EVENTO -->
     <section class="container reveal">
         <h2 class="section-title">Tecnología que <span>transforma</span></h2>
-        <div style="max-width: 850px; margin: 0 auto; text-align: center; font-size: 1.2rem; color: #2f4052; background: rgba(226,240,250,0.5); padding: 2.5rem; border-radius: 60px;">
+        <div class="glass-card" style="padding: 2.5rem; text-align: center; max-width: 850px; margin: 0 auto;">
             <p>RoboXperience es un torneo colegial de robótica que impulsa el pensamiento lógico, la creatividad, el trabajo en equipo y los valores humanos. Un espacio donde los estudiantes demuestran que la tecnología, puesta al servicio del bien común, puede transformar el futuro.</p>
         </div>
     </section>
 
-    <!-- CATEGORÍAS DEL TORNEO -->
-    <section class="container reveal">
+    <!-- AUSPICIANTES -->
+    <section class="container reveal" id="auspiciantes">
+        <div class="sponsors-section">
+            <h2 class="section-title">Nuestros <span>Auspiciantes</span></h2>
+            <p class="section-sub">Aliados que creen en el talento joven y la tecnología</p>
+            <div class="sponsors-grid">
+                <div class="sponsor-item">
+                    <img src="images/roboworkslogo.png" alt="RoboWorks" onerror="this.innerHTML='<i class=\'fas fa-building\' style=\'font-size:2rem; color:#00E5FF;\'></i>'">
+                </div>
+                <div class="sponsor-item">
+                    <img src="images/Algorithmics.png" alt="Auspiciante 2" onerror="this.innerHTML='<i class=\'fas fa-microchip\' style=\'font-size:2rem; color:#00E5FF;\'></i>'">
+                </div>
+                <div class="sponsor-item">
+                    <img src="images/auspiciante3.jpg" alt="Auspiciante 3" onerror="this.innerHTML='<i class=\'fas fa-robot\' style=\'font-size:2rem; color:#00E5FF;\'></i>'">
+                </div>
+                <div class="sponsor-item">
+                    <img src="images/auspiciante4.jpg" alt="Auspiciante 4" onerror="this.innerHTML='<i class=\'fas fa-university\' style=\'font-size:2rem; color:#00E5FF;\'></i>'">
+                </div>
+            </div>
+            <p style="margin-top: 2rem; font-size: 0.9rem;">¿Quieres auspiciar? <a href="#" style="color: var(--primary-cyan); text-decoration: none;"><strong>Contáctanos</strong></a></p>
+        </div>
+    </section>
+
+    <!-- CATEGORÍAS -->
+    <section class="container reveal" id="categorias">
         <h2 class="section-title">Categorías <span>del torneo</span></h2>
         <p class="section-sub">Cuatro desafíos que combinan precisión, estrategia y cultura ecuatoriana</p>
         <div class="categorias-grid">
@@ -632,9 +951,9 @@
     </section>
 
     <!-- REGLAMENTOS -->
-    <section class="container reveal" id="reglamentos">
+    <section class="container reveal">
         <div class="reglamento-box">
-            <i class="fas fa-file-pdf" style="font-size: 3rem; color: var(--verde-teal);"></i>
+            <i class="fas fa-file-pdf" style="font-size: 3rem; color: var(--primary-cyan);"></i>
             <h2 class="section-title" style="margin-bottom: 0.2rem;">Reglamentos <span>oficiales</span></h2>
             <p style="max-width: 500px; margin: 0.5rem auto;">Descarga toda la información técnica, bases y condiciones en PDF</p>
             <a href="https://drive.google.com/drive/folders/10Ad--Cxg7kyr1FnvpGFexX1HuYoOICW8?usp=sharing" class="btn-drive" target="_blank"><i class="fab fa-google-drive"></i> Descargar Reglamentos Oficiales</a>
@@ -644,7 +963,7 @@
     <!-- INSCRIPCIONES -->
     <section class="container reveal" id="inscripciones">
         <div class="inscripcion-box">
-            <i class="fas fa-edit" style="font-size: 3rem; color: var(--dorado); margin-bottom: 1rem; display: inline-block;"></i>
+            <i class="fas fa-edit" style="font-size: 3rem; color: var(--primary-cyan); margin-bottom: 1rem; display: inline-block;"></i>
             <h2>Formulario de <span>inscripción</span></h2>
             <p>Completa tus datos en nuestro formulario oficial de Google Forms y asegura tu participación en la primera edición de RoboXperience 2026.</p>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSclYAleqa8nX-tnQaSjpyzhcc4ac6Di5KyYH9P-J5eLa_uYtw/viewform?usp=pp_url" target="_blank" class="btn-google-form">
@@ -676,7 +995,7 @@
                 Transporte interno cada 30 min desde la plaza Roja
             </div>
             <div>
-                <a href="https://maps.app.goo.gl/cLrUdxb6DLQ95WSh6" target="_blank" style="color: var(--verde-teal); text-decoration: none;">
+                <a href="https://maps.app.goo.gl/cLrUdxb6DLQ95WSh6" target="_blank" style="color: var(--primary-cyan); text-decoration: none;">
                     <i class="fas fa-directions"></i> Abrir en Google Maps
                 </a>
             </div>
@@ -703,12 +1022,11 @@
     </footer>
 
     <script>
-        // ========== FECHA INTELIGENTE: SIEMPRE 21 DE MAYO ==========
+        // FECHA INTELIGENTE
         function obtenerProximo21Mayo() {
             const hoy = new Date();
             let año = hoy.getFullYear();
             let fechaEvento = new Date(año, 4, 21);
-            
             if (hoy > fechaEvento) {
                 fechaEvento = new Date(año + 1, 4, 21);
             }
